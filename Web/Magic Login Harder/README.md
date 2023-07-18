@@ -1,3 +1,7 @@
+Đề bài:
+
+![image](https://github.com/lucthienphong1120/CookieArena-CTF/assets/90561566/5e57936f-4715-4ed4-84d6-1fe1267524c3)
+
 Kiểm tra source thấy 1 đoạn
 
 ```php
