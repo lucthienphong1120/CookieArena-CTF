@@ -6,4 +6,4 @@ hoặc có thể mở Word ra và đọc macro cũng có kết quả :v
 
 Đọc đoạn mã Macro (hơi dài) nhưng lại có một cái message ghi luôn flag => Submit thôi
 
-```**CHH{If_u_w4nt_1_will_aft3rnull_u}**```
+```CHH{If_u_w4nt_1_will_aft3rnull_u}```
